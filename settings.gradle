@@ -1,0 +1,4 @@
+rootProject.name = 'ExamTryout'
+include 'sensor-app'
+include 'server-app'
+
