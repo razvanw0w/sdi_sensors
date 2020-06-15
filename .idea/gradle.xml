@@ -10,6 +10,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/monitor-core" />
+            <option value="$PROJECT_DIR$/monitor-web" />
             <option value="$PROJECT_DIR$/sensor-app" />
             <option value="$PROJECT_DIR$/server-app" />
           </set>
