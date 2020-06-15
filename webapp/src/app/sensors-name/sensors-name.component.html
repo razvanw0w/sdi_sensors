@@ -9,7 +9,7 @@
 <ul *ngIf="shown">
   <li *ngFor="let name of names">
     Sensor name: {{name}}
-    <button>Stop</button>
+    <button (click)="kill(name)">Stop</button>
     <ul>
       <li *ngFor="let sensor of dataForNames.get(name)">
         {{sensor.id}}, {{sensor.name}}, {{sensor.measurement}}, {{sensor.time}}

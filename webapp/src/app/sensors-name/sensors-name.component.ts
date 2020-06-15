@@ -23,6 +23,11 @@ export class SensorsNameComponent implements OnInit {
     this.sensorService.getSensorNames().subscribe(dto => this.names = dto);
   }
 
+  kill(name: string) {
+    console.log("kill " + name);
+    this.sensorService.killSensor(name).subscribe(r => true);
+  }
+
   showClicked() {
     this.shown = true;
     this.updateData();

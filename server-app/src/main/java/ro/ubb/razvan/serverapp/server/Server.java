@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -15,6 +16,7 @@ import java.util.concurrent.Executors;
 public class Server implements ApplicationContextAware {
     public static final int PORT = 2000;
     private ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    public static Vector<String> toKill = new Vector<>();
     private ApplicationContext context;
 
     @Override

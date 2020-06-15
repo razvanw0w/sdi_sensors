@@ -21,4 +21,9 @@ export class SensorService {
   getSensorsByName(name: String): Observable<Sensors> {
     return this.httpClient.get<Sensors>(`${this.url}/sensors/${name}`);
   }
+
+  killSensor(name: string): Observable<any> {
+    console.log(`${this.url}/kill`)
+    return this.httpClient.post(`${this.url}/kill?name=${name}`, {});
+  }
 }

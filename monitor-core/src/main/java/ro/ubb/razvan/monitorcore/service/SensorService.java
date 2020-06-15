@@ -23,4 +23,8 @@ public class SensorService {
     public List<Sensor> findAllByName(String name) {
         return sensorRepository.findTop4ByNameOrderByTimeDesc(name);
     }
+
+    public void killSensor(String name) {
+
+    }
 }

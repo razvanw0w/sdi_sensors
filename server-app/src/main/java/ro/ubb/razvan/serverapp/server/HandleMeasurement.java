@@ -6,10 +6,7 @@ import org.springframework.stereotype.Service;
 import ro.ubb.razvan.serverapp.model.Sensor;
 import ro.ubb.razvan.serverapp.repository.SensorRepository;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 
 @Service
@@ -36,19 +33,31 @@ public class HandleMeasurement implements Runnable {
         try (InputStream inputStream = clientSocket.getInputStream();
              OutputStream outputStream = clientSocket.getOutputStream()) {
             DataInputStream dataInputStream = new DataInputStream(inputStream);
+            DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+            System.out.println(Server.toKill);
             String measurement = dataInputStream.readUTF();
             String[] split = measurement.split(";");
-            String name = split[0];
-            int id = Integer.parseInt(split[1]);
-            float value = Float.parseFloat(split[2]);
-            System.out.println("sensor-name: " + name + " sensor-id: " + id + " measurement: " + value);
-            Sensor sensor = Sensor.builder()
-                    .name(name)
-                    .sensorId(id)
-                    .measurement(value)
-                    .time(System.currentTimeMillis())
-                    .build();
-            sensorRepository.save(sensor);
+            String name = split[1];
+            if (split[0].equals("info")) {
+                if (Server.toKill.contains(name)) {
+                    Server.toKill.remove(name);
+                    dataOutputStream.writeUTF("die");
+                } else {
+                    int id = Integer.parseInt(split[2]);
+                    float value = Float.parseFloat(split[3]);
+                    System.out.println("sensor-name: " + name + " sensor-id: " + id + " measurement: " + value);
+                    Sensor sensor = Sensor.builder()
+                            .name(name)
+                            .sensorId(id)
+                            .measurement(value)
+                            .time(System.currentTimeMillis())
+                            .build();
+                    sensorRepository.save(sensor);
+                }
+            } else {
+                System.out.println("someone wants " + name + " dead :(");
+                Server.toKill.add(name);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
