@@ -25,12 +25,18 @@ export class SensorsNameComponent implements OnInit {
 
   showClicked() {
     this.shown = true;
+    this.updateData();
+    setInterval(() => this.updateData(), 3000);
+  }
+
+  updateData() {
+    this.getNames();
     this.names.forEach(name => {
       this.sensorService.getSensorsByName(name)
         .subscribe(dto => {
           this.dataForNames.set(name, dto.sensors);
           console.log(dto.sensors);
         });
-    })
+    });
   }
 }
