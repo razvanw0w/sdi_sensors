@@ -23,4 +23,9 @@ public class SensorRestController {
         List<Sensor> all = sensorService.findAll();
         return new SensorsDTO(sensorConverter.toDTOList(all));
     }
+
+    @GetMapping(value = "/sensors")
+    public List<String> getAllNames() {
+        return sensorService.findAllSensorNames();
+    }
 }

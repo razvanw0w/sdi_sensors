@@ -8,7 +8,7 @@ import {SensorService} from "../sensors.service";
   styleUrls: ['./sensors-all.component.css']
 })
 export class SensorsAllComponent implements OnInit {
-  private sensors: Array<Sensor>;
+  sensors: Array<Sensor>;
 
   constructor(private sensorService: SensorService) {
   }

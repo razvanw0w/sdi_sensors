@@ -6,11 +6,13 @@ import {AppComponent} from './app.component';
 import {SensorsAllComponent} from './sensors-all/sensors-all.component';
 import {SensorService} from "./sensors.service";
 import {HttpClientModule} from "@angular/common/http";
+import {SensorsNameComponent} from './sensors-name/sensors-name.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SensorsAllComponent
+    SensorsAllComponent,
+    SensorsNameComponent
   ],
   imports: [
     BrowserModule,

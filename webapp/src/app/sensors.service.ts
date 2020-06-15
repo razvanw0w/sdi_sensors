@@ -13,4 +13,8 @@ export class SensorService {
   getSensors(): Observable<Sensors> {
     return this.httpClient.get<Sensors>(`${this.url}/all`);
   }
+
+  getSensorNames(): Observable<Array<String>> {
+    return this.httpClient.get<Array<String>>(`${this.url}/sensors`);
+  }
 }

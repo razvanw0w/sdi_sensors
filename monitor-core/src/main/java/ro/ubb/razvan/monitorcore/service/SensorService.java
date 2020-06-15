@@ -15,4 +15,8 @@ public class SensorService {
     public List<Sensor> findAll() {
         return sensorRepository.findAll();
     }
+
+    public List<String> findAllSensorNames() {
+        return sensorRepository.findAllNames();
+    }
 }
