@@ -4,5 +4,16 @@
     {{name}}
   </li>
 </ul>
-<button>Show</button>
+<button (click)="showClicked()">Show</button>
 
+<ul *ngIf="shown">
+  <li *ngFor="let name of names">
+    Sensor name: {{name}}
+    <button>Stop</button>
+    <ul>
+      <li *ngFor="let sensor of dataForNames.get(name)">
+        {{sensor.id}}, {{sensor.name}}, {{sensor.measurement}}, {{sensor.time}}
+      </li>
+    </ul>
+  </li>
+</ul>

@@ -2,6 +2,7 @@ package ro.ubb.razvan.monitorweb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import ro.ubb.razvan.monitorcore.model.Sensor;
 import ro.ubb.razvan.monitorcore.service.SensorService;
@@ -27,5 +28,11 @@ public class SensorRestController {
     @GetMapping(value = "/sensors")
     public List<String> getAllNames() {
         return sensorService.findAllSensorNames();
+    }
+
+    @GetMapping(value = "/sensors/{name}")
+    public SensorsDTO getAllByName(@PathVariable String name) {
+        List<Sensor> all = sensorService.findAllByName(name);
+        return new SensorsDTO(sensorConverter.toDTOList(all));
     }
 }

@@ -9,4 +9,6 @@ import java.util.List;
 public interface SensorRepository extends JpaRepository<Sensor, Long> {
     @Query("select distinct sensor.name from Sensor sensor")
     List<String> findAllNames();
+
+    List<Sensor> findTop4ByNameOrderByTimeDesc(String name);
 }

@@ -19,4 +19,8 @@ public class SensorService {
     public List<String> findAllSensorNames() {
         return sensorRepository.findAllNames();
     }
+
+    public List<Sensor> findAllByName(String name) {
+        return sensorRepository.findTop4ByNameOrderByTimeDesc(name);
+    }
 }
